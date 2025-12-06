@@ -33,7 +33,6 @@ final class LiveDataStore {
     }
 
     func connectAndSubscribe(apiKey: String, tickers: [String], wantTrades: Bool, wantQuotes: Bool, wantAggregates: Bool) async {
-        guard !apiKey.isEmpty else { return }
         do {
             try await provider.connect(apiKey: apiKey)
             await MainActor.run {
@@ -157,3 +156,4 @@ final class LiveDataStore {
         }
     }
 }
+
