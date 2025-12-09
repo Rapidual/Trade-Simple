@@ -55,7 +55,8 @@ final class AlphaVantageProvider: MarketDataProvider {
             pollingTask = Task { [weak self] in
                 await self?.pollingLoop()
             }
-            continuation.yield(.status(message: "Subscribed -> quotes: \(quoteSymbols.joined(separator: ",")) | aggregates: \(aggregateSymbols.joined(separator: ","))"))
+            // Use self.* to avoid shadowing/ambiguity and ensure correct values are used
+            continuation.yield(.status(message: "Subscribed -> quotes: \(self.quoteSymbols.joined(separator: ",")) | aggregates: \(self.aggregateSymbols.joined(separator: ","))"))
         }
     }
 
